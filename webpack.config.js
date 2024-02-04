@@ -25,11 +25,15 @@ const EXTENSIONS = ['.tsx', '.ts', '.jsx', '.js', '.json'];
 
 // eslint-disable-next-line no-undef
 module.exports = {
+  devServer: {
+    historyApiFallback: {
+      disableDotRule: true,
+      index: '/',
+    },
+    port: 3000,
+  },
   resolve: {
     extensions: EXTENSIONS,
-  },
-  devServer: {
-    port: 3000,
   },
   module: {
     rules: RULES,
