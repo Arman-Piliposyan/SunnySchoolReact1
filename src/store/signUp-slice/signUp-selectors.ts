@@ -4,17 +4,17 @@ import { RootStateType } from '..';
 
 const signUpSelector = (state: RootStateType) => state.signUp;
 
-export const emailSelector = createSelector(
+export const signUpEmailSelector = createSelector(
   signUpSelector,
   (signUp) => signUp.email,
 );
 
-export const passwordSelector = createSelector(
+export const signUpPasswordSelector = createSelector(
   signUpSelector,
   (signUp) => signUp.password,
 );
 
-export const confirmPasswordSelector = createSelector(
+export const signUpConfirmPasswordSelector = createSelector(
   signUpSelector,
   (signUp) => signUp.confirmPassword,
 );

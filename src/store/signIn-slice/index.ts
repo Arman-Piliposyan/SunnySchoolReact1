@@ -12,8 +12,12 @@ const initialState: SignUpState = {
   email: '',
 };
 
-export const signUpSlice = createSlice({
+export const signInSlice = createSlice({
   reducers: {
+    setSignInState: (state) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      state = initialState;
+    },
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
@@ -25,7 +29,6 @@ export const signUpSlice = createSlice({
   initialState,
 });
 
-// Action creators are generated for each case reducer function
-export const { setPassword, setEmail } = signUpSlice.actions;
+export const { setSignInState, setPassword, setEmail } = signInSlice.actions;
 
-export default signUpSlice.reducer;
+export default signInSlice.reducer;

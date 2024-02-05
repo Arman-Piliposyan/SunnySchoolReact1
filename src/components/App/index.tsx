@@ -19,6 +19,7 @@ const App = () => {
           <Route element={<Navigate to="/sign-in" replace />} path="/" />
           <Route element={<SignIn />} path="sign-in" />
           <Route element={<SignUp />} path="sign-up" />
+          <Route element={<div>dashboard</div>} path="dashboard" />
         </Routes>
       </Router>
     </>

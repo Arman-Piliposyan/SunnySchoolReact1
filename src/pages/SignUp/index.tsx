@@ -6,27 +6,28 @@ import { useNavigate } from 'react-router';
 import React, { useState } from 'react';
 
 import {
-  setConfirmPassword,
-  signUpInitialState,
-  setSignUpState,
-  setPassword,
-  setEmail,
-} from '../../store/signUp-slice';
-import {
-  confirmPasswordSelector,
-  passwordSelector,
-  emailSelector,
+  signUpConfirmPasswordSelector,
+  signUpPasswordSelector,
+  signUpEmailSelector,
 } from '../../store/signUp-slice/signUp-selectors';
+import {
+  setSignUpConfirmPassword,
+  setSignUpPassword,
+  setSignUpState,
+  setSignUpEmail,
+} from '../../store/signUp-slice';
 import { signUpPost, usersGet } from '../../services/authorizationService';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const email = useSelector(emailSelector);
-  const password = useSelector(passwordSelector);
-  const [showSignUpSuccess, setShowSignUpSuccess] = useState(false);
+
+  const email = useSelector(signUpEmailSelector);
+  const password = useSelector(signUpPasswordSelector);
+  const confirmPassword = useSelector(signUpConfirmPasswordSelector);
+
   const [isEmailCorrect, setIsEmailCorrect] = useState(true);
-  const confirmPassword = useSelector(confirmPasswordSelector);
+  const [showSignUpSuccess, setShowSignUpSuccess] = useState(false);
   const [confirmPasswordMatch, setConfirmPasswordMatch] = useState(true);
 
   const validateEmail = (email: string) => {
@@ -38,6 +39,7 @@ export const SignUp = () => {
   };
 
   const handleGoToSignIn = () => {
+    dispatch(setSignUpState());
     navigate('/sign-in');
   };
 
@@ -45,14 +47,14 @@ export const SignUp = () => {
     if (!isEmailCorrect) {
       setIsEmailCorrect(true);
     }
-    dispatch(setEmail(event.target.value));
+    dispatch(setSignUpEmail(event.target.value));
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!confirmPasswordMatch) {
       setConfirmPasswordMatch(true);
     }
-    dispatch(setPassword(event.target.value));
+    dispatch(setSignUpPassword(event.target.value));
   };
 
   const handleConfirmPasswordChange = (
@@ -61,7 +63,7 @@ export const SignUp = () => {
     if (!confirmPasswordMatch) {
       setConfirmPasswordMatch(true);
     }
-    dispatch(setConfirmPassword(event.target.value));
+    dispatch(setSignUpConfirmPassword(event.target.value));
   };
 
   const handleSignUp = async () => {
@@ -81,7 +83,7 @@ export const SignUp = () => {
         password,
         email,
       });
-      dispatch(setSignUpState(signUpInitialState));
+      dispatch(setSignUpState());
       setShowSignUpSuccess(true);
     } catch (error) {
       // eslint-disable-next-line no-console

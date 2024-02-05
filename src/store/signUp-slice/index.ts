@@ -8,7 +8,7 @@ export interface SignInState {
   email: string;
 }
 
-export const signUpInitialState: SignInState = {
+const signUpInitialState: SignInState = {
   confirmPassword: '',
   password: '',
   email: '',
@@ -16,16 +16,17 @@ export const signUpInitialState: SignInState = {
 
 export const signUpSlice = createSlice({
   reducers: {
-    setConfirmPassword: (state, action: PayloadAction<string>) => {
+    setSignUpState: (state) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      state = signUpInitialState;
+    },
+    setSignUpConfirmPassword: (state, action: PayloadAction<string>) => {
       state.confirmPassword = action.payload;
     },
-    setPassword: (state, action: PayloadAction<string>) => {
+    setSignUpPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    setSignUpState: (state, action: PayloadAction<SignInState>) => {
-      state = action.payload;
-    },
-    setEmail: (state, action: PayloadAction<string>) => {
+    setSignUpEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
   },
@@ -33,7 +34,11 @@ export const signUpSlice = createSlice({
   name: 'signUp',
 });
 
-export const { setConfirmPassword, setSignUpState, setPassword, setEmail } =
-  signUpSlice.actions;
+export const {
+  setSignUpConfirmPassword,
+  setSignUpPassword,
+  setSignUpState,
+  setSignUpEmail,
+} = signUpSlice.actions;
 
 export default signUpSlice.reducer;
