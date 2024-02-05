@@ -30,7 +30,7 @@ module.exports = {
       disableDotRule: true,
       index: '/',
     },
-    port: 3000,
+    port: 5000,
   },
   resolve: {
     extensions: EXTENSIONS,

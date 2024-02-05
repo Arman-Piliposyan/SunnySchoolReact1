@@ -1,22 +1,26 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import React from 'react';
 
-import { SignUp } from '../../pages/SignUp';
-import { Login } from '../../pages/Login';
-
 // import LeeAlgorithmVisualization from '../LeeAlgoritm';
-
-const router = createBrowserRouter([
-  { element: <Login />, path: '/' },
-  { element: <SignUp />, path: 'signUp' },
-]);
+import { SignUp } from '../../pages/SignUp';
+import { SignIn } from '../../pages/SignIn';
 
 const App = () => {
   return (
     <>
       {/* <LeeAlgorithmVisualization /> */}
-
-      <RouterProvider router={router} />
+      <Router>
+        <Routes>
+          <Route element={<Navigate to="/sign-in" replace />} path="/" />
+          <Route element={<SignIn />} path="sign-in" />
+          <Route element={<SignUp />} path="sign-up" />
+        </Routes>
+      </Router>
     </>
   );
 };
