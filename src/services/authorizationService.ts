@@ -4,7 +4,6 @@ import axios from 'axios';
 type signUpPostType = {
   password: string;
   email: string;
-  id: string;
 };
 
 export const usersGet = async () => {

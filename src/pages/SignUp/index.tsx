@@ -16,7 +16,7 @@ import {
   setSignUpState,
   setSignUpEmail,
 } from '../../store/signUp-slice';
-import { signUpPost, usersGet } from '../../services/authorizationService';
+import { signUpPost } from '../../services/authorizationService';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -76,10 +76,7 @@ export const SignUp = () => {
     }
 
     try {
-      const { data } = await usersGet();
       await signUpPost({
-        id: data.length + 1,
-
         password,
         email,
       });

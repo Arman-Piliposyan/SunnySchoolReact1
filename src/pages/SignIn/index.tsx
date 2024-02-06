@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import {
   signInPasswordSelector,
   signInEmailSelector,
-} from '../../store/signIn-slice/signIn-slice';
+} from '../../store/signIn-slice/signIn-selectors';
 import {
   setSignInState,
   setPassword,

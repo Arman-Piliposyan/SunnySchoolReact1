@@ -2,8 +2,8 @@
   "users": [
     {
       "id": 1,
-      "password": "123456",
-      "email": "karen@gmail.com",
+      "password": "123",
+      "email": "arman@gmail.com",
       "token": "2555405e-d6b4-4d4d-8c68-e955af108caa"
     }
   ],
