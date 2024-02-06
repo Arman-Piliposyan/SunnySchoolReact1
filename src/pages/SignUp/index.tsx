@@ -176,6 +176,7 @@ export const SignUp = () => {
               startIcon={<ArrowBackIosIcon />}
               onClick={handleGoToSignIn}
               variant="contained"
+              color="secondary"
             >
               Go Sign In
             </Button>

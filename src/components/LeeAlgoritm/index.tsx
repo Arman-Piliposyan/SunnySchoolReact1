@@ -1,3 +1,4 @@
+import { Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
 
 interface Cell {
@@ -42,7 +43,7 @@ const LeeAlgorithmVisualization: React.FC = () => {
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
-  const bfs = async () => {
+  const visualizingFunction = async () => {
     setIsVisualizing(true);
 
     const queue: {
@@ -130,7 +131,7 @@ const LeeAlgorithmVisualization: React.FC = () => {
       const newGrid = generateGrid();
       setGrid(newGrid);
       setShortestPath([]);
-      await bfs();
+      await visualizingFunction();
       setIsVisualizing(false);
     } else {
       alert('Choose your starting and ending points!');
@@ -138,59 +139,86 @@ const LeeAlgorithmVisualization: React.FC = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleVisualize} disabled={isVisualizing}>
-        Visualize
-      </button>
+    <div
+      style={{
+        justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        gap: '24px',
+      }}
+    >
+      <Typography fontWeight={700} fontSize={32}>
+        Lee algorithm
+      </Typography>
       <div
         style={{
-          gridTemplateColumns: `repeat(${gridSize}, 20px)`,
-          display: 'grid',
+          flexDirection: 'column',
+          alignItems: 'center',
+          display: 'flex',
+          gap: '16px',
         }}
       >
-        {grid.map((row) => {
-          return row.map((cell) => {
-            const isShortestPath = shortestPath.some(
-              (node) => node.row === cell.row && node.col === cell.col,
-            );
-            return (
-              <div
-                style={{
-                  background:
-                    startNode &&
-                    cell.row === startNode[0] &&
-                    cell.col === startNode[1]
-                      ? 'red'
-                      : endNode &&
-                          cell.row === endNode[0] &&
-                          cell.col === endNode[1]
-                        ? 'green'
-                        : isShortestPath
-                          ? 'blue'
-                          : cell.isWall
-                            ? 'black'
-                            : cell.isVisited
-                              ? 'yellow'
-                              : 'white',
-                  border: '1px solid #ccc',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  display: 'flex',
-                  height: '20px',
-                  width: '20px',
-                }}
-                onClick={() => handleCellClick(cell.row, cell.col)}
-                key={`${cell.row}-${cell.col}`}
-              >
-                {startNode &&
-                cell.row === startNode[0] &&
-                cell.col === startNode[1]
-                  ? ''
-                  : cell.distance > 0 && cell.distance}
-              </div>
-            );
-          });
-        })}
+        <div
+          style={{
+            gridTemplateColumns: `repeat(${gridSize}, 20px)`,
+            display: 'grid',
+          }}
+        >
+          {grid.map((row) => {
+            return row.map((cell) => {
+              const isShortestPath = shortestPath.some(
+                (node) => node.row === cell.row && node.col === cell.col,
+              );
+              return (
+                <div
+                  style={{
+                    background:
+                      startNode &&
+                      cell.row === startNode[0] &&
+                      cell.col === startNode[1]
+                        ? 'red'
+                        : endNode &&
+                            cell.row === endNode[0] &&
+                            cell.col === endNode[1]
+                          ? 'green'
+                          : isShortestPath
+                            ? 'blue'
+                            : cell.isWall
+                              ? 'black'
+                              : cell.isVisited
+                                ? 'yellow'
+                                : 'white',
+                    border: '1px solid #ccc',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    display: 'flex',
+                    height: '20px',
+                    width: '20px',
+                  }}
+                  onClick={() => handleCellClick(cell.row, cell.col)}
+                  key={`${cell.row}-${cell.col}`}
+                >
+                  {startNode &&
+                  cell.row === startNode[0] &&
+                  cell.col === startNode[1]
+                    ? ''
+                    : cell.distance > 0 && cell.distance}
+                </div>
+              );
+            });
+          })}
+        </div>
+        <Button
+          onClick={handleVisualize}
+          disabled={isVisualizing}
+          variant="contained"
+          color="warning"
+        >
+          Visualize
+        </Button>
       </div>
     </div>
   );
