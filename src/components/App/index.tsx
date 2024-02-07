@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import React from 'react';
 
 import LeeAlgorithmVisualization from '../LeeAlgoritm';
@@ -15,6 +20,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route element={<PublicRoute />} path="/">
+            <Route element={<Navigate to="sign-in" />} path="/" />
             <Route element={<SignIn />} path="sign-in" />
             <Route element={<SignUp />} path="sign-up" />
           </Route>

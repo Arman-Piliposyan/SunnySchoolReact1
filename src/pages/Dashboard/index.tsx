@@ -1,42 +1,69 @@
-import TableContainer from '@mui/material/TableContainer';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Typography, Button, Box } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import React, { useEffect, useState } from 'react';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
-import Table from '@mui/material/Table';
-import Paper from '@mui/material/Paper';
 
+import { CommonDialog } from '../../components/UI_components/CommonDialog';
 import { CommonModal } from '../../components/UI_components/CommonModal';
 import { postsSelector } from '../../store/posts-slice/post-selectors';
 import { CreatePostModalContent } from './CreatePostModalContent';
-import { postsGet } from '../../store/posts-slice';
+import { PostType, postsGet } from '../../store/posts-slice';
+import { deletePost } from '../../services/otherServices';
 import { useAppDispatch } from '../../store';
+import { PostsTable } from './PostsTable';
 
 export const Dashboard = () => {
   const dispatch = useAppDispatch();
   const posts = useSelector(postsSelector);
 
   const [openModal, setOpenModal] = useState(false);
+  const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const [postForDelete, setPostForDelete] = useState<PostType | null>(null);
+  const [postFoEdit, setPostForEdit] = useState<PostType | null>(null);
 
   const handleOpenModal = () => {
     setOpenModal(true);
+  };
+
+  const handleCloseDialog = () => {
+    if (!isOpenDialog) {
+      return;
+    }
+    setIsOpenDialog(false);
+  };
+
+  const handleDeletePost = async () => {
+    if (!postForDelete?.id) {
+      return;
+    }
+    try {
+      await deletePost(postForDelete?.id);
+      dispatch(postsGet());
+      handleCloseDialog();
+      setPostForDelete(null);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     dispatch(postsGet());
   }, []);
 
+  useEffect(() => {
+    if (openModal) {
+      return;
+    }
+    setPostForEdit(null);
+  }, [openModal]);
+
   return (
     <>
       <Box
         sx={{
-          justifyContent: 'center',
           flexDirection: 'column',
-          alignItems: 'center',
           display: 'flex',
           height: '100%',
           width: '100%',
@@ -62,47 +89,57 @@ export const Dashboard = () => {
             ADD POST
           </Button>
         </Box>
-        {posts && (
-          <TableContainer
-            sx={{ height: 'calc(100% - 50px)' }}
-            component={Paper}
+        {posts.length ? (
+          <PostsTable
+            setPostForDelete={setPostForDelete}
+            setIsOpenDialog={setIsOpenDialog}
+            setPostForEdit={setPostForEdit}
+            setOpenModal={setOpenModal}
+            posts={posts}
+          />
+        ) : (
+          <Box
+            sx={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              display: 'flex',
+              height: '100%',
+              width: '100%',
+            }}
           >
-            <Table
-              sx={{ maxHeight: 550, minWidth: 650 }}
-              aria-label="simple table"
-            >
-              <TableHead sx={{ backgroundColor: '#1976d2' }}>
-                <TableRow>
-                  <TableCell sx={{ color: 'white' }} align="center">
-                    Title
-                  </TableCell>
-                  <TableCell sx={{ color: 'white' }} align="center">
-                    Body
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {posts.map((row) => {
-                  return (
-                    <TableRow
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                      key={row.id}
-                    >
-                      <TableCell>{row.title}</TableCell>
-                      <TableCell>{row.body}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+            <Typography fontWeight={700} color={'grey'} fontSize={52}>
+              Nothing To Show
+            </Typography>
+          </Box>
         )}
       </Box>
       <CommonModal
-        modalContent={<CreatePostModalContent setOpenModal={setOpenModal} />}
+        modalContent={
+          <CreatePostModalContent
+            setOpenModal={setOpenModal}
+            postFoEdit={postFoEdit}
+          />
+        }
         setOpenModal={setOpenModal}
         open={openModal}
       />
+      {isOpenDialog && (
+        <CommonDialog
+          dialogContent={
+            <Typography sx={{ wordWrap: ' break-word' }}>
+              Are you sure you want to delete post - {postForDelete?.title}
+            </Typography>
+          }
+          handleCloseDialog={handleCloseDialog}
+          confirmAction={handleDeletePost}
+          confirmIcon={<DeleteIcon />}
+          isOpenDialog={isOpenDialog}
+          dialogTitle="Delete Post"
+          buttonColor="error"
+          confirmText="Yes"
+          cancelText="No"
+        />
+      )}
     </>
   );
 };

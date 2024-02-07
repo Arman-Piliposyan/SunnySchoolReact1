@@ -7,18 +7,21 @@ import {
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React, { useState } from 'react';
-import axios from 'axios';
 
-import { postsGet } from '../../../store/posts-slice';
+import { editPost, addPost } from '../../../services/otherServices';
+import { PostType, postsGet } from '../../../store/posts-slice';
 import { useAppDispatch } from '../../../store';
 
-type Props = { setOpenModal: React.Dispatch<React.SetStateAction<boolean>> };
+type Props = {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  postFoEdit: PostType | null;
+};
 
-export const CreatePostModalContent = ({ setOpenModal }: Props) => {
+export const CreatePostModalContent = ({ setOpenModal, postFoEdit }: Props) => {
   const dispatch = useAppDispatch();
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(postFoEdit?.title || '');
+  const [body, setBody] = useState(postFoEdit?.body || '');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChangeUrl = ({
@@ -36,13 +39,25 @@ export const CreatePostModalContent = ({ setOpenModal }: Props) => {
   const handleAdd = async () => {
     try {
       setIsLoading(true);
-      await axios({
-        url: 'http://localhost:8000/posts',
-        data: { title, body },
-        method: 'POST',
-      });
+      await addPost({ title, body });
       dispatch(postsGet());
       setIsLoading(false);
+      setOpenModal(false);
+    } catch (error) {
+      setIsLoading(false);
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  };
+
+  const handleEdit = async () => {
+    try {
+      setIsLoading(true);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+      await editPost({ data: { title, body }, id: postFoEdit?.id! });
+      dispatch(postsGet());
+      setIsLoading(false);
+
       setOpenModal(false);
     } catch (error) {
       setIsLoading(false);
@@ -64,7 +79,7 @@ export const CreatePostModalContent = ({ setOpenModal }: Props) => {
       }}
     >
       <Typography fontWeight={500} fontSize={32}>
-        Add Post
+        {postFoEdit ? 'Edit Post' : 'Add Post'}
       </Typography>
       <Typography
         sx={{ width: '60%' }}
@@ -72,7 +87,7 @@ export const CreatePostModalContent = ({ setOpenModal }: Props) => {
         align="center"
         fontSize={16}
       >
-        Please enter the title and body
+        Please {postFoEdit ? 'edit' : 'enter'} the title and body
       </Typography>
       <TextField
         onChange={handleChangeUrl}
@@ -99,12 +114,12 @@ export const CreatePostModalContent = ({ setOpenModal }: Props) => {
             <AddCircleIcon />
           )
         }
+        onClick={postFoEdit ? handleEdit : handleAdd}
         disabled={!title || !body}
-        onClick={handleAdd}
         variant="contained"
         color="primary"
       >
-        ADD
+        {postFoEdit ? 'EDIT' : 'ADD'}
       </Button>
     </Box>
   );

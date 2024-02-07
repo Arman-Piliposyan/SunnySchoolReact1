@@ -14,15 +14,15 @@ const initialState: SignUpState = {
 
 export const signInSlice = createSlice({
   reducers: {
-    setSignInState: (state) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      state = initialState;
-    },
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
+    },
+    setSignInState: (state) => {
+      state.password = '';
+      state.email = '';
     },
   },
   name: 'signUp',

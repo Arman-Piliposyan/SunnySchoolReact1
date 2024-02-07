@@ -5,14 +5,16 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate, Outlet } from 'react-router';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ListItem from '@mui/material/ListItem';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import { NavLink } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 import List from '@mui/material/List';
-import { Outlet } from 'react-router';
 import Box from '@mui/material/Box';
 import * as React from 'react';
 
@@ -92,6 +94,7 @@ const Drawer = styled(MuiDrawer, {
 export const Layout = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,15 +103,19 @@ export const Layout = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/sign-in');
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: 'space-between', display: 'flex' }}>
           <IconButton
             sx={{
               marginRight: 5,
-              ...(open && { display: 'none' }),
+              ...(open && { visibility: 'hidden' }),
             }}
             onClick={handleDrawerOpen}
             aria-label="open drawer"
@@ -117,15 +124,25 @@ export const Layout = () => {
           >
             <MenuIcon />
           </IconButton>
+          <Tooltip title="Logout">
+            <IconButton
+              aria-label="open drawer"
+              onClick={handleLogout}
+              color="inherit"
+              edge="start"
+            >
+              <LogoutIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader sx={{ backgroundColor: '#1976d2' }}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
+              <ChevronRightIcon sx={{ color: 'white' }} />
             ) : (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon sx={{ color: 'white' }} />
             )}
           </IconButton>
         </DrawerHeader>

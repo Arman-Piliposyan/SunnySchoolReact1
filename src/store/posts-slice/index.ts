@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { getPosts } from '../../services/otherServices';
 
-type PostType = {
+export type PostType = {
   title: string;
   body: string;
-  id: number;
+  id?: number;
 };
 
 type PostsStateType = {
