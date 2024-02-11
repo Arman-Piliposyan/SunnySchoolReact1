@@ -12,6 +12,7 @@ import { PrivateRoute } from '../PrivateRoute';
 import { PublicRoute } from '../PublicRoute';
 import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
+import { Stream } from '../../pages/Stream';
 import { Layout } from '../Layout';
 
 const App = () => {
@@ -38,6 +39,7 @@ const App = () => {
               element={<LeeAlgorithmVisualization />}
               path="lee-algorithm"
             />
+            <Route element={<Stream />} path="Stream" />
           </Route>
         </Routes>
       </Router>

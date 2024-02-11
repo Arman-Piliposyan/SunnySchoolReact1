@@ -7,5 +7,11 @@
       "token": "2555405e-d6b4-4d4d-8c68-e955af108caa"
     }
   ],
-  "posts": []
+  "posts": [
+    {
+      "title": "fjgh",
+      "body": "fgjfg",
+      "id": 2
+    }
+  ]
 }
