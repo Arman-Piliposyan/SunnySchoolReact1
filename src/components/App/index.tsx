@@ -14,6 +14,7 @@ import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
 import { Stream } from '../../pages/Stream';
 import { Layout } from '../Layout';
+import { Weather } from '../../pages/Weather';
 
 const App = () => {
   return (
@@ -39,7 +40,8 @@ const App = () => {
               element={<LeeAlgorithmVisualization />}
               path="lee-algorithm"
             />
-            <Route element={<Stream />} path="Stream" />
+            <Route element={<Stream />} path="stream" />
+            <Route element={<Weather />} path="weather" />
           </Route>
         </Routes>
       </Router>
