@@ -13,13 +13,21 @@ export const FiveDaysWeather = () => {
         const weather18 = fiveDaysWeather[day][1];
         return (
           <Box
-            sx={{ alignItems: 'center', display: 'flex', gap: '12px' }}
+            sx={{
+              backgroundColor: '#ffffff50',
+              border: '1px solid gray',
+              alignItems: 'center',
+              borderRadius: '12px',
+              padding: '2px 12px',
+              display: 'flex',
+              gap: '12px',
+            }}
             key={day}
           >
             <Typography sx={{ marginRight: '6px' }}>{day}</Typography>
             <Box>
               {weather06 && (
-                <Box sx={{ alignItems: 'center', display: 'flex', gap: '6px' }}>
+                <Box sx={{ alignItems: 'center', display: 'flex', gap: '4px' }}>
                   06:00 -
                   <img
                     src={`http://openweathermap.org/img/wn/${weather06.weather[0].icon}@2x.png`}

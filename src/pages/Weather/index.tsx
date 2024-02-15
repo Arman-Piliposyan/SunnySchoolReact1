@@ -22,8 +22,14 @@ export const Weather: React.FC = () => {
       <Typography fontWeight={700} fontSize={32}>
         Weather
       </Typography>
-      <Box sx={{ justifyContent: 'space-between', display: 'flex' }}>
-        <Box sx={{ flexDirection: 'column', display: 'flex', gap: '32px' }}>
+      <Box
+        sx={{
+          justifyContent: 'space-between',
+          height: 'calc(100% - 64px)',
+          display: 'flex',
+        }}
+      >
+        <Box sx={{ flexDirection: 'column', display: 'flex', gap: '16px' }}>
           <TodayWeatherSection />
           {position && <FiveDaysWeatherSection />}
         </Box>

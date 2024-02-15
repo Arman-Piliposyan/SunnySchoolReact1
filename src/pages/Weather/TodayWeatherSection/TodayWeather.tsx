@@ -8,7 +8,16 @@ export const TodayWeather = () => {
   const { weather } = useWeather();
 
   return (
-    <Box sx={{ alignItems: 'center', display: 'flex' }}>
+    <Box
+      sx={{
+        backgroundColor: '#ffffff50',
+        border: '1px solid gray',
+        alignItems: 'center',
+        borderRadius: '12px',
+        padding: '2px 12px',
+        display: 'flex',
+      }}
+    >
       <Typography>
         Today in{' '}
         <span
