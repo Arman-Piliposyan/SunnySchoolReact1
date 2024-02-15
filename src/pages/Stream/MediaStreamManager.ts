@@ -1,4 +1,5 @@
 // MediaStreamManager.ts
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function getMediaStream(deviceId?: string): Promise<MediaStream> {
   const constraints: MediaStreamConstraints = {
     video: true,

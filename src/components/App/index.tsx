@@ -6,15 +6,16 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 
+import { WeatherContextProvider } from '../../pages/Weather/WeatherContext';
 import LeeAlgorithmVisualization from '../LeeAlgoritm';
 import { Dashboard } from '../../pages/Dashboard';
 import { PrivateRoute } from '../PrivateRoute';
+import { Weather } from '../../pages/Weather';
 import { PublicRoute } from '../PublicRoute';
 import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
 import { Stream } from '../../pages/Stream';
 import { Layout } from '../Layout';
-import { Weather } from '../../pages/Weather';
 
 const App = () => {
   return (
@@ -41,7 +42,14 @@ const App = () => {
               path="lee-algorithm"
             />
             <Route element={<Stream />} path="stream" />
-            <Route element={<Weather />} path="weather" />
+            <Route
+              element={
+                <WeatherContextProvider>
+                  <Weather />
+                </WeatherContextProvider>
+              }
+              path="weather"
+            />
           </Route>
         </Routes>
       </Router>

@@ -1,6 +1,6 @@
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import React from 'react';
 
@@ -24,7 +24,7 @@ export const DrawerMenu = [
     id: '2',
   },
   {
-    icon: <WbSunnyIcon sx={{ fontSize: '20px' }} />,
+    icon: <LightModeIcon sx={{ fontSize: '20px' }} />,
     route: '/weather',
     name: 'Weather',
     id: '3',

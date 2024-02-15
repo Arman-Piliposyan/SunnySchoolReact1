@@ -1,33 +1,33 @@
-import { MapContainer, TileLayer } from 'react-leaflet';
-import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import 'leaflet/dist/leaflet.css';
+import React from 'react';
 
-import { getWeather } from '../../services/weatherService';
-import { LocationMarker } from './LocationMarker';
+import { FiveDaysWeatherSection } from './FiveDaysWeatherSection';
+import { TodayWeatherSection } from './TodayWeatherSection';
+import { useWeather } from './WeatherContext';
+import { Map } from './Map';
 
 export const Weather: React.FC = () => {
-  const [position, setPosition] = useState({ lat: 40.177516, lng: 44.512638 });
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await getWeather();
-      console.log(data);
-    })();
-  }, []);
-  console.log(position);
-
+  const { position } = useWeather();
   return (
-    <Box sx={{ height: '100%', width: '100%' }}>
-      <Box sx={{ overflow: 'hidden', height: '500px', width: '500px' }}>
-        <MapContainer
-          style={{ height: '500px', width: '100%' }}
-          center={position}
-          zoom={13}
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <LocationMarker setPosition={setPosition} position={position} />
-        </MapContainer>
+    <Box
+      sx={{
+        flexDirection: 'column',
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        gap: '16px',
+      }}
+    >
+      <Typography fontWeight={700} fontSize={32}>
+        Weather
+      </Typography>
+      <Box sx={{ justifyContent: 'space-between', display: 'flex' }}>
+        <Box sx={{ flexDirection: 'column', display: 'flex', gap: '32px' }}>
+          <TodayWeatherSection />
+          {position && <FiveDaysWeatherSection />}
+        </Box>
+        <Map />
       </Box>
     </Box>
   );
