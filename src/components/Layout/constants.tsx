@@ -1,4 +1,5 @@
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
@@ -28,5 +29,11 @@ export const DrawerMenu = [
     route: '/weather',
     name: 'Weather',
     id: '3',
+  },
+  {
+    icon: <CompareArrowsIcon sx={{ fontSize: '20px' }} />,
+    route: '/socket',
+    name: 'Socket',
+    id: '4',
   },
 ];

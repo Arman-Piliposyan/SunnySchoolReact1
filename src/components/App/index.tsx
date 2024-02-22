@@ -15,6 +15,7 @@ import { PublicRoute } from '../PublicRoute';
 import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
 import { Stream } from '../../pages/Stream';
+import { Socket } from '../../pages/Socket';
 import { Layout } from '../Layout';
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
               path="lee-algorithm"
             />
             <Route element={<Stream />} path="stream" />
+            <Route element={<Socket />} path="socket" />
             <Route
               element={
                 <WeatherContextProvider>
