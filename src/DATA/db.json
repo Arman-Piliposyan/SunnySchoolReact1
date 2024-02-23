@@ -5,6 +5,12 @@
       "password": "123",
       "email": "arman@gmail.com",
       "token": "2555405e-d6b4-4d4d-8c68-e955af108caa"
+    },
+    {
+      "password": "123",
+      "email": "arman2@gmail.com",
+      "token": "522e70f3-646d-4616-a4a9-61d46639b5ca",
+      "id": 2
     }
   ],
   "posts": [
@@ -12,6 +18,11 @@
       "title": "fjgh",
       "body": "fgjfg",
       "id": 2
+    },
+    {
+      "title": "wefwef",
+      "body": "wefwef",
+      "id": 3
     }
   ]
 }

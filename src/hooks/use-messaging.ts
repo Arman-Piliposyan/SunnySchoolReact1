@@ -8,7 +8,7 @@ export const useMessaging = (): [Message[], (message: Message) => void] => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    signalingProvider.eventEmitter.on(
+    const sendMessagesOff = signalingProvider.eventEmitter.on(
       Messages_Event_Types.ADD_MESSAGE,
       onNewMessage,
     );
@@ -19,9 +19,9 @@ export const useMessaging = (): [Message[], (message: Message) => void] => {
 
     return () => {
       loadMessagesOff();
+      sendMessagesOff();
     };
   }, []);
-  console.log(signalingProvider.eventEmitter);
 
   const onNewMessage = (message: Message) => {
     setMessages((prevMessages) => [...prevMessages, message]);

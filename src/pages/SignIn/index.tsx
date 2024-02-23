@@ -76,6 +76,7 @@ export const SignIn = () => {
       }
       dispatch(setSignInState());
       localStorage.setItem('token', findUser.token);
+      localStorage.setItem('user', findUser.email);
       navigate('/dashboard');
     } catch (error) {
       // eslint-disable-next-line no-console

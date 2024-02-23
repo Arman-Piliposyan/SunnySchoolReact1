@@ -104,7 +104,7 @@ export const Layout = () => {
     setOpen(false);
   };
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.clear();
     navigate('/sign-in');
   };
 
