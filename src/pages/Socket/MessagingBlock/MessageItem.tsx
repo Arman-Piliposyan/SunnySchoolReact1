@@ -25,10 +25,12 @@ export const MessageItem = ({ messageItem }: Props) => {
             : '24px 24px 24px 0px',
           backgroundColor: isUserMessage ? 'rgb(25, 118, 210)' : 'grey',
           padding: '8px 16px',
-          width: '250px',
+          maxWidth: '250px',
         }}
       >
-        <Typography color={'white'}>{messageItem.text}</Typography>
+        <Typography sx={{ wordWrap: 'break-word' }} color={'white'}>
+          {messageItem.text}
+        </Typography>
         <Box
           sx={{
             flexDirection: isUserMessage ? 'row' : 'row-reverse',
@@ -36,13 +38,10 @@ export const MessageItem = ({ messageItem }: Props) => {
             alignItems: 'center',
             marginTop: '8px',
             display: 'flex',
+            gap: '16px',
           }}
         >
-          <Typography
-            textAlign={!isUserMessage ? 'right' : 'left'}
-            color={'white'}
-            fontSize={8}
-          >
+          <Typography textAlign="center" color="white" fontSize={8}>
             {format(new Date(messageItem.date), 'yyyy-MM-dd  HH:MM')}
           </Typography>
           <Typography fontWeight={700} color={'white'} fontSize={12}>

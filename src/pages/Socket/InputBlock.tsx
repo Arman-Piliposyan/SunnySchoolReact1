@@ -29,8 +29,8 @@ export const InputBlock = () => {
 
   const handleSend = () => {
     const message = {
-      date: new Date().toISOString(),
       text: userMessage,
+      date: new Date(),
       username: user,
     } as Message;
 

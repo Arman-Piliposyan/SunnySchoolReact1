@@ -1,13 +1,13 @@
 import { Typography, Box } from '@mui/material';
 import React, { useEffect } from 'react';
 
-import { signalingProvider } from '../../providers/signaling-provider';
+import { socketProvider } from '../../providers/socket-provider';
 import { MessagingBlock } from './MessagingBlock';
 import { InputBlock } from './InputBlock';
 
 export const Socket = () => {
   useEffect(() => {
-    signalingProvider.init();
+    socketProvider.init();
   }, []);
 
   return (

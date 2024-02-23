@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 
-import { signalingProvider } from '../providers/signaling-provider';
-import { Messages_Event_Types, Message_Types } from '../constants';
+import { Emitter_Event_Types, Socket_Event_Types } from '../constants';
+import { socketProvider } from '../providers/socket-provider';
 import { Message } from '../types';
 
 export const useMessaging = (): [Message[], (message: Message) => void] => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    const sendMessagesOff = signalingProvider.eventEmitter.on(
-      Messages_Event_Types.ADD_MESSAGE,
+    const sendMessagesOff = socketProvider.eventEmitter.on(
+      Emitter_Event_Types.ADD_MESSAGE,
       onNewMessage,
     );
-    const loadMessagesOff = signalingProvider.eventEmitter.on(
-      Messages_Event_Types.UPDATE_MESSAGES,
+    const getMessagesOff = socketProvider.eventEmitter.on(
+      Emitter_Event_Types.UPDATE_MESSAGES,
       onLoadMessages,
     );
 
     return () => {
-      loadMessagesOff();
+      getMessagesOff();
       sendMessagesOff();
     };
   }, []);
@@ -32,7 +32,7 @@ export const useMessaging = (): [Message[], (message: Message) => void] => {
   };
 
   const sendMessage = (message: Message) => {
-    signalingProvider.sendMessage(Message_Types.NEW_MESSAGE, message);
+    socketProvider.sendMessage(Socket_Event_Types.NEW_MESSAGE, message);
   };
 
   return [messages, sendMessage];
