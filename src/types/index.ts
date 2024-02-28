@@ -3,3 +3,11 @@ export type Message = {
   text: string;
   date: Date;
 };
+
+export type VideoDataType = {
+  description: string;
+  subtitle: string;
+  sources: string;
+  thumb: string;
+  title: string;
+};

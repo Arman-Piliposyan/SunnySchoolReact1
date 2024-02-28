@@ -8,6 +8,7 @@ import React from 'react';
 
 import { WeatherContextProvider } from '../../pages/Weather/WeatherContext';
 import LeeAlgorithmVisualization from '../LeeAlgoritm';
+import { VideoPlayer } from '../../pages/VideoPlayer';
 import { Dashboard } from '../../pages/Dashboard';
 import { PrivateRoute } from '../PrivateRoute';
 import { Weather } from '../../pages/Weather';
@@ -44,6 +45,7 @@ const App = () => {
             />
             <Route element={<Stream />} path="stream" />
             <Route element={<Socket />} path="socket" />
+            <Route element={<VideoPlayer />} path="video-player" />
             <Route
               element={
                 <WeatherContextProvider>

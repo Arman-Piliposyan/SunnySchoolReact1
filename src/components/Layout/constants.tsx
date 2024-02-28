@@ -1,5 +1,6 @@
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
@@ -35,5 +36,11 @@ export const DrawerMenu = [
     route: '/socket',
     name: 'Socket',
     id: '4',
+  },
+  {
+    icon: <VideoLibraryIcon sx={{ fontSize: '20px' }} />,
+    route: '/video-player',
+    name: 'Video Player',
+    id: '5',
   },
 ];
