@@ -3,6 +3,7 @@ import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import TheatersIcon from '@mui/icons-material/Theaters';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import React from 'react';
 
@@ -42,5 +43,11 @@ export const DrawerMenu = [
     route: '/video-player',
     name: 'Video Player',
     id: '5',
+  },
+  {
+    icon: <TheatersIcon sx={{ fontSize: '20px' }} />,
+    route: '/movies',
+    name: 'Movies',
+    id: '6',
   },
 ];

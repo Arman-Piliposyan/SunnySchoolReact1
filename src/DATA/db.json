@@ -13,6 +13,46 @@
       "id": 2
     }
   ],
+  "movies": [
+    {
+      "year": 2015,
+      "title": "BigBuckBunny",
+      "country": "USA",
+      "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "imageUrl": "https://peach.blender.org/wp-content/uploads/bbb-splash.png",
+      "description": "Big Buck Bunny tells the story of a giant rabbit with a heart bigger than himself. When one sunny day three rodents rudely harass him, something snaps... and the rabbit ain't no bunny anymore! In the typical cartoon tradition he prepares the nasty rodents a comical revenge.\\n\\nLicensed under the Creative Commons Attribution license\\nhttp://www.bigbuckbunny.org",
+      "actors": [
+        "Denzel Washington",
+        "Johnny Depp"
+      ],
+      "rating": 4,
+      "genres": [
+        "Cartoon",
+        "Comedy",
+        "Musical"
+      ],
+      "id": 1
+    },
+    {
+      "year": 2018,
+      "title": "ElephantsDream",
+      "country": "USA",
+      "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Elephants_Dream_cover.jpg",
+      "description": "The first Blender Open Movie from 2006",
+      "actors": [
+        "Johnny Depp",
+        "Tom Hanks"
+      ],
+      "rating": 3,
+      "genres": [
+        "Cartoon",
+        "Comedy",
+        "Musical"
+      ],
+      "id": 2
+    }
+  ],
   "posts": [
     {
       "title": "fjgh",

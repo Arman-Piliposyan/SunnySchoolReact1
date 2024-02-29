@@ -5,6 +5,7 @@ import signInSlice from './signIn-slice';
 import signUpSlice from './signUp-slice';
 import deviceSlice from './device-slice';
 import postsSlice from './posts-slice';
+import movieSlice from './movie-slice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     signUp: signUpSlice,
     signIn: signInSlice,
     posts: postsSlice,
+    movie: movieSlice,
   },
 });
 

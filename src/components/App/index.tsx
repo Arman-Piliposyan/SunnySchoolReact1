@@ -17,6 +17,7 @@ import { SignUp } from '../../pages/SignUp';
 import { SignIn } from '../../pages/SignIn';
 import { Stream } from '../../pages/Stream';
 import { Socket } from '../../pages/Socket';
+import { Movies } from '../../pages/Movies';
 import { Layout } from '../Layout';
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
             <Route element={<Stream />} path="stream" />
             <Route element={<Socket />} path="socket" />
             <Route element={<VideoPlayer />} path="video-player" />
+            <Route element={<Movies />} path="movies" />
             <Route
               element={
                 <WeatherContextProvider>
