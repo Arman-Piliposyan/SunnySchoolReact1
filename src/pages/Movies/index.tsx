@@ -12,7 +12,7 @@ import { AdminTab } from './AdminTab';
 import { allProps } from './helpers';
 
 export const Movies = () => {
-  const [selectedTab, setSelectedTab] = React.useState(1);
+  const [selectedTab, setSelectedTab] = React.useState(0);
   const selectedMovie = useSelector(movieSelector);
   const firstRender = useRef(false);
 

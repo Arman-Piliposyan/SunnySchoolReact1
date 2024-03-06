@@ -25,6 +25,14 @@ io.on('connection', (socket) => {
     socket.emit('load_messages', messages);
   });
 
+  socket.on('ask', (message) => {
+    io.emit('ask', message);
+  });
+
+  socket.on('answer', (message) => {
+    io.emit('answer', message);
+  });
+
   // Handle new messages
   socket.on('new_message', (message) => {
     fs.readFile('./db.json', 'utf8', (err, data) => {

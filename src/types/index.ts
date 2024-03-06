@@ -11,3 +11,14 @@ export type VideoDataType = {
   thumb: string;
   title: string;
 };
+
+export type AskMessageModel = {
+  userId: string;
+  i: number;
+  j: number;
+};
+
+export type AnswerMessageModel = {
+  answerType: string;
+  userId: string;
+};

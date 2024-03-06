@@ -10,6 +10,7 @@ import { WeatherContextProvider } from '../../pages/Weather/WeatherContext';
 import LeeAlgorithmVisualization from '../LeeAlgoritm';
 import { VideoPlayer } from '../../pages/VideoPlayer';
 import { Dashboard } from '../../pages/Dashboard';
+import { SeaBattle } from '../../pages/SeaBattle';
 import { PrivateRoute } from '../PrivateRoute';
 import { Weather } from '../../pages/Weather';
 import { PublicRoute } from '../PublicRoute';
@@ -48,6 +49,7 @@ const App = () => {
             <Route element={<Socket />} path="socket" />
             <Route element={<VideoPlayer />} path="video-player" />
             <Route element={<Movies />} path="movies" />
+            <Route element={<SeaBattle />} path="game" />
             <Route
               element={
                 <WeatherContextProvider>

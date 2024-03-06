@@ -1,4 +1,5 @@
 import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CloudSyncIcon from '@mui/icons-material/CloudSync';
@@ -48,6 +49,12 @@ export const DrawerMenu = [
     icon: <TheatersIcon sx={{ fontSize: '20px' }} />,
     route: '/movies',
     name: 'Movies',
+    id: '6',
+  },
+  {
+    icon: <VideogameAssetIcon sx={{ fontSize: '20px' }} />,
+    name: 'Sea-Battle',
+    route: '/game',
     id: '6',
   },
 ];
