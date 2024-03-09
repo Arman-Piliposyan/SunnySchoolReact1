@@ -3,7 +3,7 @@ import { enemyBoardProvider } from './enemy-board-provider';
 import { selfBoardProvider } from './self-board-provider';
 import { signalingProvider } from './signaling-provider';
 import { MessageTypes } from '../../constants';
-
+const user = localStorage.getItem('user');
 class GameProvider {
   constructor() {
     signalingProvider.eventEmitter.on(MessageTypes.ASK, this.onAsk);
@@ -20,7 +20,7 @@ class GameProvider {
 
   public ask(i: number, j: number) {
     signalingProvider.sendMessage(MessageTypes.ASK, {
-      userId: 'user_1',
+      userId: user as string,
       i,
       j,
     });

@@ -46,7 +46,7 @@ const App = () => {
               path="lee-algorithm"
             />
             <Route element={<Stream />} path="stream" />
-            <Route element={<Socket />} path="socket" />
+            {/* <Route element={<Socket />} path="socket" /> */}
             <Route element={<VideoPlayer />} path="video-player" />
             <Route element={<Movies />} path="movies" />
             <Route element={<SeaBattle />} path="game" />

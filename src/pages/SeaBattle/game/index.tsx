@@ -11,7 +11,15 @@ export const Game = () => {
   }, []);
 
   return (
-    <Box sx={{ justifyContent: 'space-around', display: 'flex', gap: '24px' }}>
+    <Box
+      sx={{
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        display: 'flex',
+        height: '100%',
+        gap: '24px',
+      }}
+    >
       <SelfBoard />
       <EnemyBoard />
     </Box>
